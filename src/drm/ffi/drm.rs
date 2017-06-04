@@ -2,10 +2,10 @@ use libc::*;
 use byteorder::{ByteOrder, NativeEndian};
 
 
-pub const DRM_NAME: &'static str = "drm";	        /**< Name in kernel, /dev, and /proc */
+pub const DRM_NAME: &'static str = "drm";  /**< Name in kernel, /dev, and /proc */
 pub const DRM_MIN_ORDER: c_int = 5;        /**< At least 2^5 bytes = 32 bytes */
-pub const DRM_MAX_ORDER: u8	= 22;	    /**< Up to 2^22 bytes = 4MB */
-pub const DRM_RAM_PERCENT: c_int = 10;	    /**< How much system ram can we lock? */
+pub const DRM_MAX_ORDER: u8	= 22;	       /**< Up to 2^22 bytes = 4MB */
+pub const DRM_RAM_PERCENT: c_int = 10;	   /**< How much system ram can we lock? */
 
 
 pub type KernelSizeT = c_ulong;
@@ -817,22 +817,14 @@ pub const DRM_CAP_VBLANK_HIGH_CRTC: uint64_t = 0x2;
 pub const DRM_CAP_DUMB_PREFERRED_DEPTH: uint64_t = 0x3;
 pub const DRM_CAP_DUMB_PREFER_SHADOW: uint64_t = 0x4;
 pub const DRM_CAP_PRIME: uint64_t = 0x5;
-pub const  DRM_PRIME_CAP_IMPORT: uint64_t = 0x1;
-pub const  DRM_PRIME_CAP_EXPORT: uint64_t = 0x2;
+pub const DRM_PRIME_CAP_IMPORT: uint64_t = 0x1;
+pub const DRM_PRIME_CAP_EXPORT: uint64_t = 0x2;
 pub const DRM_CAP_TIMESTAMP_MONOTONIC: uint64_t = 0x6;
 pub const DRM_CAP_ASYNC_PAGE_FLIP: uint64_t = 0x7;
-/*
- * The CURSOR_WIDTH and CURSOR_HEIGHT capabilities return a valid widthxheight
- * combination for the hardware cursor. The intention is that a hardware
- * agnostic userspace can query a cursor plane size to use.
- *
- * Note that the cross-driver contract is to merely return a valid size;
- * drivers are free to attach another meaning on top, eg. i915 returns the
- * maximum plane size.
- */
 pub const DRM_CAP_CURSOR_WIDTH: uint64_t = 0x8;
 pub const DRM_CAP_CURSOR_HEIGHT: uint64_t = 0x9;
 pub const DRM_CAP_ADDFB2_MODIFIERS: uint64_t = 0x10;
+
 
 /** DRM_IOCTL_GET_CAP ioctl argument type */
 #[repr(C)]
