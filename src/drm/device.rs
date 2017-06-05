@@ -46,8 +46,16 @@ impl Device {
     pub fn get_resources(&self) {
         unsafe {
             let res = drmModeGetResources(self.fd);
-            for i in 0..(*res).count_connectors as isize {
+            let connectors = (*res).count_connectors as isize;
+            println!("connectors: {}", connectors);
+            for i in 0..connectors {
                 let conn = drmModeGetConnector(self.fd, *(*res).connectors.offset(i));
+                let modes = (*conn).count_modes as isize;
+                println!("modes: {}", modes);
+                for j in 0..modes {
+                    let mode = (*conn).modes.offset(j);
+                    println!("{}x{}", (*mode).hdisplay, (*mode).vdisplay);
+                }
             }
         }
     }
