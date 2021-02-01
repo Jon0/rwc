@@ -56,7 +56,17 @@ impl Device {
                     let mode = (*conn).modes.offset(j);
                     println!("{}x{}", (*mode).hdisplay, (*mode).vdisplay);
                 }
+
+                let encoder = drmModeGetEncoder(self.fd, (*conn).encoder_id);
+
             }
+        }
+    }
+
+    pub fn set_master(&self) {
+        unsafe {
+            let r = drmSetMaster(self.fd);
+            println!("master: {}", r);
         }
     }
 }
@@ -68,5 +78,12 @@ fn list_devices() {
     let devices_ptr = devices.as_ptr() as *mut drmDevice;
     unsafe {
         drmGetDevices(&devices_ptr, 1);
+    }
+}
+
+
+fn available() {
+    unsafe {
+        drmAvailable();
     }
 }

@@ -11,4 +11,5 @@ fn main() {
     let buf = d.get_capability(DeviveCapability::DumbBuffer);
     println!("dumb buffer: {}", buf);
     d.get_resources();
+    d.set_master();
 }
